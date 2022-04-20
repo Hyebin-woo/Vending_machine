@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>벤딩머신</title>
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <img class="img-logo" src="./images/logo.png" alt="콜라콜라로고" />
+    </header>
+    <div class="wrapper">
+      <section class="select-part">
+        <h2 class="txt-hidden">콜라 종류 버튼</h2>
+        <ul class="select-menu">
+          <li>
+            <button class="btn-menu" type="button">
+              <img src="./images/Original_Cola.png" alt="original_cola" />
+              <p class="cola-name">original_cola</p>
+              <span class="menu-price">1000원</span>
+            </button>
+          </li>
+          <li>
+            <button class="btn-menu" type="button">
+              <img src="./images/Violet_Cola.png" alt="violet_cola" />
+              <p class="cola-name">original_cola</p>
+              <span class="menu-price">1000원</span>
+            </button>
+          </li>
+          <li>
+            <button class="btn-menu" type="button">
+              <img src="./images/Yellow_Cola.png" alt="yellow_cola" />
+              <p class="cola-name">original_cola</p>
+              <span class="menu-price">1000원</span>
+            </button>
+          </li>
+          <li>
+            <button class="btn-menu" type="button">
+              <img src="./images/Cool_Cola.png" alt="cool_cola" />
+              <p class="cola-name">original_cola</p>
+              <span class="menu-price">1000원</span>
+            </button>
+          </li>
+          <li>
+            <button class="btn-menu" type="button">
+              <img src="./images/Green_Cola.png" alt="green_cola" />
+              <p class="cola-name">original_cola</p>
+              <span class="menu-price">1000원</span>
+            </button>
+          </li>
+          <li>
+            <button class="btn-menu" type="button">
+              <img src="./images/Orange_Cola.png" alt="orange_cola" />
+              <p class="cola-name">original_cola</p>
+              <span class="menu-price">1000원</span>
+            </button>
+          </li>
+        </ul>
+
+        <section class="select-buy">
+          <h2 class="txt-hidden">입금 잔액 정보</h2>
+          <div class="change-box">잔액: <span>원</span></div>
+          <button class="btn-return"></button>
+
+          <input class="txt-money" type="number" placeholder="입금액 입력" />
+          <button class="btn-push"></button>
+
+          <h2 class="txt-hidden">선택한 음료 구입</h2>
+          <ul class="select-list">
+            <li>
+              <button class="btn-item" type="button">
+                <img src="" alt="original_cola" />
+                <p class="item-name">original_cola</p>
+                <span class="item-price">1000원</span>
+              </button>
+            </li>
+          </ul>
+          <button class="btn-get" type="button">획득</button>
+        </section>
+      </section>
+
+      <section class="confirm-part">
+        <h2 class="txt-hidden">구입 내역 확인</h2>
+        <div>
+          <p>소지금:</p>
+          <span>2,0000원</span>
+        </div>
+        <div>
+          <h2 class="title-drink">획득한 음료</h2>
+          <ul class="select-list">
+            <li>
+              <button class="btn-item" type="button">
+                <img src="" alt="original_cola" />
+                <p class="item-name">original_cola</p>
+                <span class="item-price">1000원</span>
+              </button>
+            </li>
+          </ul>
+          <strong class="total-price"> 총 금액: 0원 </strong>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

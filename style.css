@@ -1,0 +1,29 @@
+body {
+  background: #eae8fe;
+}
+* {
+  font-family: "Noto Sans KR", sans-serif;
+}
+.header {
+  margin: 0px auto;
+}
+.header,
+.img-logo {
+  max-width: 386px;
+  height: 164px;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 28px;
+  margin-top: 200px;
+}
+
+.wrapper .select-part,
+.wrapper .confirm-part {
+  width: 360px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
