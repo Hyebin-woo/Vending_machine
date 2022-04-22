@@ -4,6 +4,7 @@ body {
 * {
   font-family: "Noto Sans KR", sans-serif;
 }
+/* 콜라콜라 로고 */
 .header {
   margin: 0px auto;
 }
@@ -13,6 +14,7 @@ body {
   height: 164px;
 }
 
+/* 전체 레이아웃 */
 .wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -28,6 +30,7 @@ body {
   background-color: #fff;
 }
 
+/* 자판기 계산 부분 */
 .wrapper .select-part {
   padding: 31px 27px 28px;
 }
@@ -51,6 +54,7 @@ body {
   box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
 }
 .select-menu .cola-name {
+  display: block;
   font-weight: 500;
   font-size: 9px;
   line-height: 13px;
@@ -60,8 +64,8 @@ body {
 }
 
 .select-menu .menu-price {
-  padding: 5px 15px;
   display: inline-block;
+  padding: 5px 15px;
   font-size: 12px;
   font-weight: 500;
   background: #6327fe;
@@ -117,22 +121,24 @@ input::placeholder {
   color: #bdbdbd;
   font-size: 13px;
 }
+.select-list li {
+  background-color: #fff;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 8px;
+}
+.select-list li + li {
+  margin-top: 6px;
+}
 .select-buy .select-list {
   grid-column: 1/3;
   overflow-y: scroll;
-  height: 134px;
+  height: 106px;
   background-color: #eae8fe;
   padding: 12px 12px;
   border: 1px solid #bdbdbd;
   box-sizing: border-box;
   border-radius: 5px;
-}
-
-.select-list .btn-item {
-  background-color: #fff;
-  box-sizing: border-box;
-  border-radius: 5px;
-  padding: 10px 10px;
 }
 
 .select-list .img-cola {
@@ -141,14 +147,13 @@ input::placeholder {
 .select-list .item-name {
   font-size: 9px;
   color: #333333;
-  display: flex;
-  align-items: center;
 }
 
 .select-list .img-cola,
 .select-list .item-name {
   float: left;
 }
+
 .select-list .item-counter {
   box-sizing: border-box;
   border: 1px solid #bdbdbd;
@@ -161,4 +166,57 @@ input::placeholder {
 .select-buy .btn-get {
   background: #6327fe;
   color: #fff;
+}
+
+/* 자판기 확인 부분 */
+.wrapper .confirm-part {
+  background-color: #eae8fe;
+}
+
+.confirm-part .confirm-mymoney {
+  padding: 9px 27px;
+  background-color: #fff;
+}
+
+.confirm-part .box-mymoney {
+  background-color: #eae8fe;
+  border-radius: 5px;
+  padding: 6px 10px;
+  font-weight: 500;
+  box-sizing: border-box;
+  line-height: 20px;
+}
+.box-mymoney .txt-mymoney {
+  float: right;
+  font-weight: 700;
+}
+
+.confirm-part .get-drink {
+  margin-top: 20px;
+  padding: 25px 27px 32px;
+  background-color: #fff;
+}
+.get-drink .title-drink {
+  text-align: center;
+  font-weight: 700;
+}
+
+.get-drink .select-list {
+  margin-top: 13px;
+  overflow-y: scroll;
+  height: 364px;
+  background-color: #eae8fe;
+  padding: 12px 12px;
+  border: 1px solid #bdbdbd;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.get-drink .total-price {
+  display: block;
+  text-align: right;
+  margin-top: 10px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 17px;
 }
