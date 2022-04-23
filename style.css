@@ -82,6 +82,21 @@ body {
   border-radius: 10px;
 }
 
+.select-menu li.sold-out::before {
+  content: "";
+  display: block;
+  position: absolute;
+  background: url(./images/Sold-out.png) no-repeat;
+  background-size: 64px;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
 .select-buy {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -144,24 +159,31 @@ input::placeholder {
 .select-list .img-cola {
   width: 18px;
 }
-.select-list .item-name {
-  font-size: 9px;
-  color: #333333;
-}
 
 .select-list .img-cola,
 .select-list .item-name {
   float: left;
 }
 
+.select-list .item-name {
+  font-size: 10px;
+  font-weight: 500;
+  color: #333333;
+  line-height: 35px;
+  margin-left: 10px;
+}
+
 .select-list .item-counter {
-  box-sizing: border-box;
   border: 1px solid #bdbdbd;
   border-radius: 5px;
-  padding: 6px 11px;
   font-size: 14px;
   font-weight: 500;
   float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
 }
 .select-buy .btn-get {
   background: #6327fe;
