@@ -113,6 +113,10 @@ body {
   font-weight: 500;
 }
 
+.select-buy button:active {
+  transform: scale(0.9);
+}
+
 .select-buy .change-box {
   grid-column: 1/3;
   font-size: 14px;
