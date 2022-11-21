@@ -1,55 +1,61 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>벤딩머신</title>
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
-    <header class="header">
-      <img class="img-logo" src="./images/logo.png" alt="콜라콜라로고" />
-    </header>
-    <div class="wrapper">
-      <section class="select-part">
-        <h2 class="txt-hidden">콜라 종류 버튼</h2>
-        <ul class="select-menu">
-          <!--메뉴리스트 -->
-        </ul>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>벤딩머신</title>
+        <link rel="stylesheet" href="./style.css" />
+    </head>
+    <body>
+        <header class="header">
+            <img class="img-logo" src="./images/logo.png" alt="콜라콜라로고" />
+        </header>
+        <div class="wrapper">
+            <section class="select-part">
+                <h2 class="txt-hidden">콜라 종류 버튼</h2>
+                <ul class="select-menu">
+                    <!--메뉴리스트 -->
+                </ul>
 
-        <section class="select-buy">
-          <h2 class="txt-hidden">입금 잔액 정보</h2>
-          <div class="change-box">잔액: <span class="txt-won">원</span></div>
-          <button class="btn-return">거스름돈 반환</button>
+                <section class="select-buy">
+                    <h2 class="txt-hidden">입금 잔액 정보</h2>
+                    <div class="change-box">
+                        잔액: <span class="txt-won">원</span>
+                    </div>
+                    <button class="btn-return">거스름돈 반환</button>
 
-          <input class="txt-money" type="text" placeholder="입금액 입력" />
-          <button class="btn-push">입금</button>
+                    <input
+                        class="txt-money"
+                        type="text"
+                        placeholder="입금액 입력"
+                    />
+                    <button class="btn-push">입금</button>
 
-          <h2 class="txt-hidden">선택한 음료 구입</h2>
-          <ul class="select-list">
-            <!-- 선택한 음료 리스트  -->
-          </ul>
-          <button class="btn-get" type="button">획득</button>
-        </section>
-      </section>
+                    <h2 class="txt-hidden">선택한 음료 구입</h2>
+                    <ul class="select-list">
+                        <!-- 선택한 음료 리스트  -->
+                    </ul>
+                    <button class="btn-get" type="button">획득</button>
+                </section>
+            </section>
 
-      <section class="confirm-part">
-        <h2 class="txt-hidden">구입 내역 확인</h2>
-        <div class="confirm-mymoney">
-          <div class="box-mymoney">
-            소지금:<span class="txt-mymoney">6,000</span>
-          </div>
+            <section class="confirm-part">
+                <h2 class="txt-hidden">구입 내역 확인</h2>
+                <div class="confirm-mymoney">
+                    <div class="box-mymoney">
+                        소지금:<span class="txt-mymoney">6,000</span>
+                    </div>
+                </div>
+                <div class="get-drink">
+                    <h2 class="title-drink">획득한 음료</h2>
+                    <ul class="select-list">
+                        <!--획득한 음료 리스트  -->
+                    </ul>
+                    <strong class="total-price"> 총 금액:</strong>
+                </div>
+            </section>
         </div>
-        <div class="get-drink">
-          <h2 class="title-drink">획득한 음료</h2>
-          <ul class="select-list">
-            <!--획득한 음료 리스트  -->
-          </ul>
-          <strong class="total-price"> 총 금액:</strong>
-        </div>
-      </section>
-    </div>
-    <script src="./script.js"></script>
-  </body>
+        <script type="module" src="./script.js"></script>
+    </body>
 </html>
