@@ -1,11 +1,52 @@
-import data from "./data.json" assert { type: "json" };
-
-const colaData = data.cola;
+let colaData = [
+    {
+        id: 0,
+        img: "./images/Original_Cola.png",
+        title: "Original_Cola",
+        price: 1000,
+        Stock: 5,
+    },
+    {
+        id: 1,
+        img: "./images/Violet_Cola.png",
+        title: "Violet_Cola",
+        price: 1000,
+        Stock: 5,
+    },
+    {
+        id: 2,
+        img: "./images/Yellow_Cola.png",
+        title: "Yellow_Cola",
+        price: 1000,
+        Stock: 5,
+    },
+    {
+        id: 3,
+        img: "./images/Cool_Cola.png",
+        title: "Cool_Cola",
+        price: 1000,
+        Stock: 5,
+    },
+    {
+        id: 4,
+        img: "./images/Green_Cola.png",
+        title: "Green_Cola",
+        price: 1000,
+        Stock: 5,
+    },
+    {
+        id: 5,
+        img: "./images/Orange_Cola.png",
+        title: "Orange_Cola",
+        price: 1000,
+        Stock: 5,
+    },
+];
 const menu = document.querySelector(".select-menu");
 const get_list = document.querySelector(".select-list");
 
 // 메뉴에 데이터 넣기 : html에 뿌려주기
-(function setMemu() {
+function setMemu() {
     for (let i = 0; i < colaData.length; i++) {
         const cola = document.createElement("li");
         cola.innerHTML = `
@@ -16,9 +57,8 @@ const get_list = document.querySelector(".select-list");
 
         menu.appendChild(cola);
     }
-})();
-//setMemu();
-
+}
+setMemu();
 // 돈의 입금과 음료의 선택 시점은 자유롭지만 돈이 모자라면 음료가 나와서는 안됩니다.
 // const money = parseInt(
 //   document.querySelector(".txt-mymoney").textContent.replace(",", "")
@@ -104,13 +144,12 @@ function addItem(id) {
     wonSpan.textContent = `${won}원`;
 }
 
+// 획득 클릭하면 오른쪽에 획득한 음료가 뜸
 function getColas() {
     const getDrink = document.querySelector(".get-drink .select-list");
     const getBtn = document.querySelector(".btn-get");
 
     getBtn.addEventListener("click", function (e) {
-        console.log(cart);
-
         for (let i = 0; i < cart.length; i++) {
             const get_cola = document.createElement("li");
             get_cola.innerHTML = `
