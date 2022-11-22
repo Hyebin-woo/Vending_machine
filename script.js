@@ -45,6 +45,18 @@ let colaData = [
 const menu = document.querySelector(".select-menu");
 const get_list = document.querySelector(".select-list");
 
+function Locale(x) {
+    console.log(typeof x);
+
+    if (typeof x === "number") {
+        return x.toLocaleString("ko-KR");
+    } else if (typeof x === "string") {
+        return parseInt(x);
+    } else {
+        return 0;
+    }
+}
+
 // 메뉴에 데이터 넣기 : html에 뿌려주기
 function setMemu() {
     for (let i = 0; i < colaData.length; i++) {
@@ -60,12 +72,8 @@ function setMemu() {
 }
 setMemu();
 // 돈의 입금과 음료의 선택 시점은 자유롭지만 돈이 모자라면 음료가 나와서는 안됩니다.
-// const money = parseInt(
-//   document.querySelector(".txt-mymoney").textContent.replace(",", "")
-// );
-
-// 입금하기
-const moneySpan = document.querySelector(".txt-mymoney");
+// 입금하기(잔액이 뜸)
+const moneySpan = document.querySelector(".txt-mymoney"); //소지금
 const wonSpan = document.querySelector(".txt-won");
 const moneyInput = document.querySelector(".txt-money");
 
@@ -73,8 +81,12 @@ function pushMoney() {
     const pushBtn = document.querySelector(".btn-push");
     pushBtn.addEventListener("click", function () {
         let money = parseInt(moneySpan.textContent.replace(",", ""));
-        wonSpan.textContent = `${moneyInput.value}원`;
-        moneySpan.textContent = `${money - moneyInput.value}`;
+        if (money >= moneyInput.value) {
+            wonSpan.textContent = `${moneyInput.value}원`;
+            moneySpan.textContent = `${money - moneyInput.value}`;
+        } else {
+            alert("지갑에 그 만큼 없습니다.!");
+        }
     });
 }
 pushMoney();
@@ -86,7 +98,6 @@ function returnMoney() {
         let money =
             parseInt(moneySpan.textContent.replace(",", "")) +
             parseInt(wonSpan.textContent.replace("원", ""));
-
         moneySpan.textContent = `${money}`;
         wonSpan.textContent = `0원`;
     });
@@ -101,14 +112,13 @@ function clickMenu() {
     for (let i = 0; i < clickCola.length; i++) {
         clickCola[i].addEventListener("click", function (e) {
             const colaId = e.currentTarget.getAttribute("id");
-
             if (
                 parseInt(wonSpan.textContent.replace("원", "")) >=
                 colaData[colaId].price
             ) {
                 addItem(colaId);
             } else {
-                alert("헤이 돈 내놔");
+                alert("입금 먼저 부탁드립니다!");
             }
         });
     }
@@ -122,7 +132,6 @@ function addItem(id) {
 
     if (cart.find((col) => col.colId == id) === undefined) {
         // cart[id] = 1;
-
         cart.push({ colId: id, count: 1 });
         const get_cola = document.createElement("li");
         get_cola.innerHTML = `
@@ -148,9 +157,13 @@ function addItem(id) {
 function getColas() {
     const getDrink = document.querySelector(".get-drink .select-list");
     const getBtn = document.querySelector(".btn-get");
+    const total = document.querySelector(".total-price");
 
     getBtn.addEventListener("click", function (e) {
+        let sum = 0;
         for (let i = 0; i < cart.length; i++) {
+            sum += cart[i].count * 1000;
+
             const get_cola = document.createElement("li");
             get_cola.innerHTML = `
       <button class="btn-item" type="button">
@@ -160,7 +173,7 @@ function getColas() {
         <span class="item-counter">${cart[i].count}</span></button>`;
             getDrink.appendChild(get_cola);
         }
-
+        total.textContent = `${Locale(sum)}원`;
         cart = [];
         get_list.innerHTML = "";
     });
