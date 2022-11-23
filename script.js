@@ -44,14 +44,15 @@ let colaData = [
 ];
 const menu = document.querySelector(".select-menu");
 const get_list = document.querySelector(".select-list");
+const moneySpan = document.querySelector(".txt-mymoney");
+const wonSpan = document.querySelector(".txt-won"); //잔액
+const moneyInput = document.querySelector(".txt-money"); //입금 인풋
 
 function Locale(x) {
-    console.log(typeof x);
-
     if (typeof x === "number") {
         return x.toLocaleString("ko-KR");
     } else if (typeof x === "string") {
-        return parseInt(x);
+        return parseInt(x).toLocaleString("ko-KR");
     } else {
         return 0;
     }
@@ -73,17 +74,15 @@ function setMemu() {
 setMemu();
 // 돈의 입금과 음료의 선택 시점은 자유롭지만 돈이 모자라면 음료가 나와서는 안됩니다.
 // 입금하기(잔액이 뜸)
-const moneySpan = document.querySelector(".txt-mymoney"); //소지금
-const wonSpan = document.querySelector(".txt-won");
-const moneyInput = document.querySelector(".txt-money");
-
 function pushMoney() {
-    const pushBtn = document.querySelector(".btn-push");
+    const pushBtn = document.querySelector(".btn-push"); //입금 버튼
     pushBtn.addEventListener("click", function () {
-        let money = parseInt(moneySpan.textContent.replace(",", ""));
-        if (money >= moneyInput.value) {
-            wonSpan.textContent = `${moneyInput.value}원`;
-            moneySpan.textContent = `${money - moneyInput.value}`;
+        let money = parseInt(
+            moneySpan.textContent.replace("원", "").replace(",", "")
+        ); //소지금
+        if (moneyInput.value >= 0 && money >= moneyInput.value) {
+            wonSpan.textContent = `${Locale(parseInt(moneyInput.value))}원`;
+            moneySpan.textContent = `${Locale(money - moneyInput.value)}원`;
         } else {
             alert("지갑에 그 만큼 없습니다.!");
         }
@@ -91,21 +90,22 @@ function pushMoney() {
 }
 pushMoney();
 
-// 거스름돈이 나와야 합니다.
+// 거스름반환 버튼을 누르기.
 function returnMoney() {
     const returnBtn = document.querySelector(".btn-return");
     returnBtn.addEventListener("click", function () {
         let money =
-            parseInt(moneySpan.textContent.replace(",", "")) +
-            parseInt(wonSpan.textContent.replace("원", ""));
-        moneySpan.textContent = `${money}`;
+            parseInt(moneySpan.textContent.replace("원", "").replace(",", "")) +
+            parseInt(wonSpan.textContent.replace("원", "").replace(",", ""));
+
+        console.log();
+        moneySpan.textContent = `${Locale(money)}원`;
         wonSpan.textContent = `0원`;
     });
 }
 returnMoney();
 
 // 버튼을 누르면 상품이 1개씩 추가됩니다. (일반적인 자판기와 동일)
-
 function clickMenu() {
     const clickCola = document.querySelectorAll(".btn-menu");
 
@@ -113,8 +113,9 @@ function clickMenu() {
         clickCola[i].addEventListener("click", function (e) {
             const colaId = e.currentTarget.getAttribute("id");
             if (
-                parseInt(wonSpan.textContent.replace("원", "")) >=
-                colaData[colaId].price
+                parseInt(
+                    wonSpan.textContent.replace(",", "").replace("원", "")
+                ) >= parseInt(colaData[colaId].price)
             ) {
                 addItem(colaId);
             } else {
@@ -126,12 +127,11 @@ function clickMenu() {
 clickMenu();
 
 let cart = [];
+
 function addItem(id) {
     const counter = document.getElementById(`list${id}`);
-    // cart[id] = cart[id] === undefined ? 1 : (cart[id] = cart[id] + 1);
 
     if (cart.find((col) => col.colId == id) === undefined) {
-        // cart[id] = 1;
         cart.push({ colId: id, count: 1 });
         const get_cola = document.createElement("li");
         get_cola.innerHTML = `
@@ -141,16 +141,15 @@ function addItem(id) {
       <span class="item-counter" id="list${id}">1</span></button>`;
         get_list.appendChild(get_cola);
     } else {
-        // cart[id] = cart[id] + 1;
         let cartIndex = cart.findIndex((col) => col.colId == id);
         cart[cartIndex].count = cart[cartIndex].count + 1;
-
         counter.textContent = cart[cartIndex].count;
     }
 
     let won =
-        parseInt(wonSpan.textContent.replace("원", "")) - colaData[id].price;
-    wonSpan.textContent = `${won}원`;
+        parseInt(wonSpan.textContent.replace("원", "").replace(",", "")) -
+        colaData[id].price;
+    wonSpan.textContent = `${Locale(won)}원`;
 }
 
 // 획득 클릭하면 오른쪽에 획득한 음료가 뜸
@@ -160,20 +159,22 @@ function getColas() {
     const total = document.querySelector(".total-price");
 
     getBtn.addEventListener("click", function (e) {
-        let sum = 0;
+        let totalPrice = parseInt(
+            total.textContent.replace("원", "").replace(",", "")
+        );
         for (let i = 0; i < cart.length; i++) {
-            sum += cart[i].count * 1000;
-
+            totalPrice = totalPrice + cart[i].count * 1000;
             const get_cola = document.createElement("li");
             get_cola.innerHTML = `
-      <button class="btn-item" type="button">
-        <img class="img-cola" src="${colaData[cart[i].colId].img}" 
-        alt="${colaData[cart[i].colId].title}" /> 
-        <strong class="item-name">${colaData[cart[i].colId].title}</strong>
-        <span class="item-counter">${cart[i].count}</span></button>`;
+            <button class="btn-item" type="button">
+            <img class="img-cola" src="${colaData[cart[i].colId].img}" 
+            alt="${colaData[cart[i].colId].title}" /> 
+            <strong class="item-name">${colaData[cart[i].colId].title}</strong>
+            <span class="item-counter">${cart[i].count}</span></button>`;
             getDrink.appendChild(get_cola);
         }
-        total.textContent = `${Locale(sum)}원`;
+
+        total.textContent = `${Locale(totalPrice)}원`;
         cart = [];
         get_list.innerHTML = "";
     });
