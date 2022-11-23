@@ -44,9 +44,13 @@ let colaData = [
 ];
 const menu = document.querySelector(".select-menu");
 const get_list = document.querySelector(".select-list");
-const moneySpan = document.querySelector(".txt-mymoney");
+let moneySpan = document.querySelector(".txt-mymoney");
 const wonSpan = document.querySelector(".txt-won"); //잔액
 const moneyInput = document.querySelector(".txt-money"); //입금 인풋
+
+moneySpan.textContent = `${Locale(
+    parseInt(prompt("지갑에 얼마있는지 알려주세요!!."))
+)}원`;
 
 function Locale(x) {
     if (typeof x === "number") {
